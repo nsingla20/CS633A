@@ -3,7 +3,7 @@ rm -f machinefile
 av_l=()
 av_ls=()
 ind=0
-for i in {1..130}
+for i in {1..60}
 do
     timeout 1 mpirun --hosts csews$i hostname >/dev/null 2>&1
     if [ $? == 0 ]
