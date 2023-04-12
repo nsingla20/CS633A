@@ -8,7 +8,7 @@ int main( int argc, char *argv[])
 {
     int myrank;
     MPI_Status status;
-    double sTime, eTime, time,st,et,d;
+    double sTime, eTime, time, d;
 
     MPI_Init(&argc, &argv);
 
@@ -28,13 +28,8 @@ int main( int argc, char *argv[])
     if (myrank == 1)
         MPI_Recv (buf, count, MPI_BYTE, 0, 1, MPI_COMM_WORLD, &status);
     eTime = MPI_Wtime();
-    MPI_Reduce (&sTime, &st, 1, MPI_DOUBLE, MPI_MIN, 0, MPI_COMM_WORLD);
-    d=sTime-st;
-    et=eTime-d;
-    d=et-st;
-    // st=sTime;
+    d = eTime-sTime;
     MPI_Reduce (&d, &time, 1, MPI_DOUBLE, MPI_MAX, 0, MPI_COMM_WORLD);
-    // et=eTime;
     if(myrank ==0 ){
         printf ("%lf",time);
     }

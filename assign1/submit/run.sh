@@ -1,6 +1,6 @@
 #!/bin/bash
 echo "source,destination,size,time">"data.csv"
-mpicc code1.c
+mpicc code.c
 list=( $( ./available_nodes.sh ) )
 len=${#list[@]}
 for k in {1..3}
